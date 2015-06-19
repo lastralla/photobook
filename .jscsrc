@@ -1,0 +1,96 @@
+{
+    "preset": "google",
+    "esnext": true,
+    "verbose": true,
+
+    "disallowMultipleVarDecl": "exceptUndefined",
+    "disallowKeywordsOnNewLine": [ "else" ],
+    "requireCurlyBraces": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "try",
+        "catch"
+    ],
+
+    "requireDotNotation": "except_snake_case",
+    "requireOperatorBeforeLineBreak": true,
+    "requireCamelCaseOrUpperCaseIdentifiers": true,
+    "disallowMultipleLineStrings": true,
+
+    "maximumLineLength": {
+        "value": 100,
+        "tabSize": 4,
+        "allowComments": true,
+        "allowUrlComments": true,
+        "allowRegex": true
+    },
+    "validateIndentation": 4,
+    "validateQuoteMarks": "'",
+
+    "disallowMixedSpacesAndTabs": true,
+    "requireLineFeedAtFileEnd": true,
+
+    "disallowMultipleLineBreaks": true,
+    "disallowTrailingWhitespace": true,
+    "disallowSpaceAfterObjectKeys": true,
+    "disallowSpacesInFunction": {
+        "beforeOpeningRoundBrace": true
+    },
+    "requireSpaceAfterLineComment": {
+        "allExcept": [
+            "#", "=", "////////"
+    ]},
+    "requireSpaceAfterKeywords": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "switch",
+        "case",
+        "return",
+        "try",
+        "catch",
+        "typeof"
+    ],
+
+    "disallowSpaceAfterPrefixUnaryOperators": true,
+    "requireSpaceBeforeBinaryOperators": [
+        "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",
+        "&=", "|=", "^=", "+=",
+        "+", "-", "*", "/", "%", "<<", ">>", ">>>", "&",
+        "|", "^", "&&", "||", "===", "==", ">=",
+        "<=", "<", ">", "!=", "!=="
+    ],
+    "disallowSpaceBeforeBinaryOperators": [ ",", ":" ],
+    "requireSpaceAfterBinaryOperators": true,
+
+    "requireSpacesInConditionalExpression": true,
+    "requireSpaceBeforeBlockStatements": true,
+    "requireSpacesInForStatement": true,
+    "requireSpacesInFunctionExpression": {
+        "beforeOpeningCurlyBrace": true
+    },
+    "disallowSpacesInAnonymousFunctionExpression": {
+        "beforeOpeningRoundBrace": true
+    },
+    "disallowSpacesInsideObjectBrackets": "all",
+    "disallowSpacesInsideArrayBrackets": "all",
+    "disallowSpacesInsideParentheses": true,
+
+    "disallowNewlineBeforeBlockStatements": true,
+    "requireParenthesesAroundIIFE": true,
+
+    "validateJSDoc": {
+        "checkParamNames": true,
+        "checkRedundantParams": true,
+        "requireParamTypes": true
+    },
+    "excludeFiles": [
+        "node_module/**",
+        "www/libs/**"
+    ]
+}
