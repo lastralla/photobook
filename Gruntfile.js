@@ -13,6 +13,8 @@ module.exports = function(grunt) {
         dist: 'dist'
     };
 
+    var keys = grunt.file.readJSON('keys.json');
+
     require('load-grunt-tasks')(grunt);
 
     require('time-grunt')(grunt);
@@ -62,6 +64,10 @@ module.exports = function(grunt) {
             gruntfile: {
                 files: [
                     'Gruntfile.js'
+                ],
+                tasks: [
+                    'newer:jshint:all',
+                    'newer:jscs'
                 ]
             },
             livereload: {
@@ -75,7 +81,6 @@ module.exports = function(grunt) {
                 ]
             }
         },
-
         connect: {
             options: {
                 port: 9000,
@@ -189,6 +194,25 @@ module.exports = function(grunt) {
                     '<%= conf.app %>/styles/{,*/}*.{scss,sass}'
                 ],
                 ignorePath: /(\.\.\/){1,2}bower_components\//
+            }
+        },
+
+        replace: {
+            dist: {
+                options: {
+                    patterns: [{
+                        match: 'facebookkey',
+                        replacement: keys.prod.facebook
+                    }]
+                },
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: [
+                        'app/index.html'
+                    ],
+                    dest: 'dist/'
+                }]
             }
         },
 
@@ -369,6 +393,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
         'clean:dist',
         'wiredep',
+        'replace:dist',
         'useminPrepare',
         'concurrent:dist',
         'concat',

@@ -44,7 +44,11 @@ This project uses npm and Ruby for certain dependencies. Make sure they are inst
 
 ## Package App
 
-To build for deployment:
+**Setup Facebook app key**
+Copy and rename `keys.json.sample` to `keys.json` and add a valid Facebook api token. 
+
+**Create a dist build**
+To build:
 ```
 > grunt serve:dist
 ```
@@ -53,3 +57,7 @@ To build for deployment:
 - It's just a demo!
 - Given more time I would have used Gulp! (But had random Grunt tasks from other projects already on hand.)
 - A proper Angular app should be structured to be more modular. See [John Papa's Angular Style Guide](https://github.com/johnpapa/angular-styleguide).
+
+
+## TODOs
+- find a better way to insert api key even in dev mode

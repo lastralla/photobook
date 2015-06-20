@@ -37,6 +37,31 @@
       </div>
     </div>
 
+    <div ng-controller="FBController">
+        <button type="button"
+                class="btn btn-primary btn-large"
+                ng-show="!logged"
+                ng-disabled="!facebookReady"
+                ng-click="IntentLogin()">
+                    Login with Facebook
+        </button>
+        <button type="button"
+                class="btn btn-danger btn-large"
+                ng-show="logged && !userWasAlreadyFBLogged"
+                ng-disabled="!facebookReady"
+                ng-click="logout()">
+                    Logout of Facebook
+        </button>
+
+        <br>Debug:
+        <div>
+            <debug val="user"></debug>
+        </div>
+    </div>
+
+    <script>
+        var apikey = '@@facebookkey'; // temp
+    </script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -63,13 +88,14 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-facebook/lib/angular-facebook.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

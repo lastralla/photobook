@@ -1,3 +1,4 @@
+/* globals apikey */
 'use strict';
 
 /**
@@ -16,9 +17,10 @@ angular
         'ngResource',
         'ngRoute',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
+        'facebook'
     ])
-    .config(function($routeProvider) {
+    .config(function($routeProvider) { /* @ngInject */
         $routeProvider
             .when('/', {
                 templateUrl: 'views/main.html',
@@ -31,4 +33,8 @@ angular
             .otherwise({
                 redirectTo: '/'
             });
+    })
+    .config(function(FacebookProvider) { /* @ngInject */
+        var myAppId = apikey;
+        FacebookProvider.init(myAppId);
     });
