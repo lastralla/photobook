@@ -34,7 +34,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: [
-                    '<%= conf.app %>/scripts/{,*/}*.js'
+                    '<%= conf.app %>/{,*/}*.js'
                 ],
                 tasks: [
                     'newer:jshint:all',
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
             },
             compass: {
                 files: [
-                    '<%= conf.app %>/styles/{,*/}*.{scss,sass}'
+                    '<%= conf.app %>/{,*/}*.scss'
                 ],
                 tasks: [
                     'compass:server'
@@ -76,7 +76,7 @@ module.exports = function(grunt) {
                 },
                 files: [
                     '<%= conf.app %>/{,*/}*.html',
-                    '.tmp/styles/{,*/}*.css',
+                    '.tmp/{,*/}*.css',
                     '<%= conf.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
             all: {
                 src: [
                     'Gruntfile.js',
-                    '<%= conf.app %>/scripts/{,*/}*.js'
+                    '<%= conf.app %>/{,*/}*.js'
                 ]
             },
             test: {
@@ -151,7 +151,7 @@ module.exports = function(grunt) {
         jscs: {
             src: [
                 'Gruntfile.js',
-                '<%= conf.app %>/scripts/{,*/}*.js'
+                '<%= conf.app %>/{,*/}*.js'
             ],
             options: {
                 config: '.jscsrc',
@@ -191,7 +191,7 @@ module.exports = function(grunt) {
             },
             sass: {
                 src: [
-                    '<%= conf.app %>/styles/{,*/}*.{scss,sass}'
+                    '<%= conf.app %>/{,*/}*.scss'
                 ],
                 ignorePath: /(\.\.\/){1,2}bower_components\//
             }
@@ -218,16 +218,16 @@ module.exports = function(grunt) {
 
         compass: {
             options: {
-                sassDir: '<%= conf.app %>/styles',
-                cssDir: '.tmp/styles',
+                sassDir: '<%= conf.app %>/',
+                cssDir: '.tmp/app/',
                 generatedImagesDir: '.tmp/images/generated',
                 imagesDir: '<%= conf.app %>/images',
-                javascriptsDir: '<%= conf.app %>/scripts',
-                fontsDir: '<%= conf.app %>/styles/fonts',
+                javascriptsDir: '<%= conf.app %>',
+                fontsDir: '<%= conf.app %>/common/fonts',
                 importPath: './bower_components',
                 httpImagesPath: '/images',
                 httpGeneratedImagesPath: '/images/generated',
-                httpFontsPath: '/styles/fonts',
+                httpFontsPath: '/common/fonts',
                 relativeAssets: false,
                 assetCacheBuster: false,
                 raw: 'Sass::Script::Number.precision = 10\n'
@@ -247,10 +247,10 @@ module.exports = function(grunt) {
         filerev: {
             dist: {
                 src: [
-                    '<%= conf.dist %>/scripts/{,*/}*.js',
-                    '<%= conf.dist %>/styles/{,*/}*.css',
+                    '<%= conf.dist %>/**/*.js',
+                    '<%= conf.dist %>/**/*.css',
                     '<%= conf.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-                    '<%= conf.dist %>/styles/fonts/*'
+                    '<%= conf.dist %>/common/fonts/*'
                 ]
             }
         },
@@ -278,7 +278,7 @@ module.exports = function(grunt) {
                 '<%= conf.dist %>/{,*/}*.html'
             ],
             css: [
-                '<%= conf.dist %>/styles/{,*/}*.css'
+                '<%= conf.dist %>/{,*/}*.css'
             ],
             options: {
                 assetsDirs: [
@@ -291,8 +291,8 @@ module.exports = function(grunt) {
         cssmin: {
             dist: {
                 files: {
-                    '<%= conf.dist %>/styles/main.css': [
-                        '.tmp/styles/{,*/}*.css'
+                    '<%= conf.dist %>/app/common/common.css': [
+                        '.tmp/**/*.css'
                     ]
                 }
             }
@@ -302,12 +302,12 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '.tmp/concat/scripts',
+                    cwd: '.tmp/concat/app',
                     src: [
                         '*.js',
                         '!oldieshim.js'
                     ],
-                    dest: '.tmp/concat/scripts'
+                    dest: '.tmp/concat/app'
                 }]
             }
         },
@@ -318,13 +318,12 @@ module.exports = function(grunt) {
                     expand: true,
                     dot: true,
                     cwd: '<%= conf.app %>',
-                    dest: '<%= conf.dist %>',
+                    dest: '<%= conf.dist %>/app',
                     src: [
                         '*.{ico,png,txt}',
                         '.htaccess',
-                        '*.html',
-                        'views/{,*/}*.html',
-                        'images/{,*/}*.{webp}',
+                        '**/*.html',
+                        'app/{,*/}*.{webp}',
                         'fonts/{,*/}*.*'
                     ]
                 }, {
@@ -343,8 +342,8 @@ module.exports = function(grunt) {
             },
             styles: {
                 expand: true,
-                cwd: '<%= conf.app %>/styles',
-                dest: '.tmp/styles/',
+                cwd: '<%= conf.app %>',
+                dest: '.tmp/',
                 src: '{,*/}*.css'
             }
         },
@@ -368,6 +367,11 @@ module.exports = function(grunt) {
             }
         }
     });
+
+    grunt.registerTask('mintest', [
+        'useminPrepare',
+        'usemin'
+    ]);
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function(target) {
         if (target === 'dist') {

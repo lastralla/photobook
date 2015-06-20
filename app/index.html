@@ -6,15 +6,17 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
+
+    <!-- build:css(.) app/vendor.css -->
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
+
+    <!-- build:css(.tmp) app/common/common.css -->
+    <link rel="stylesheet" href="app/common/common.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="photobookApp">
+  <body ng-app="pb.app">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -22,12 +24,7 @@
     <!-- Add your site or application content here -->
     <div class="container">
       <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">photobook</h3>
+        <h3 class="text-muted">photobook facebook demo</h3>
       </div>
 
       <div ng-view=""></div>
@@ -37,33 +34,11 @@
       </div>
     </div>
 
-    <div ng-controller="FBController">
-        <button type="button"
-                class="btn btn-primary btn-large"
-                ng-show="!logged"
-                ng-disabled="!facebookReady"
-                ng-click="IntentLogin()">
-                    Login with Facebook
-        </button>
-        <button type="button"
-                class="btn btn-danger btn-large"
-                ng-show="logged && !userWasAlreadyFBLogged"
-                ng-disabled="!facebookReady"
-                ng-click="logout()">
-                    Logout of Facebook
-        </button>
-
-        <br>Debug:
-        <div>
-            <debug val="user"></debug>
-        </div>
-    </div>
-
     <script>
         var apikey = '@@facebookkey'; // temp
     </script>
 
-    <!-- build:js(.) scripts/vendor.js -->
+    <!-- build:js(.) app/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -92,10 +67,11 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/about.js"></script>
+    <!-- build:js({.tmp,app}) app/scripts.js -->
+    <script src="app.js"></script>
+    <script src="common/common.module.js"></script>
+    <script src="facebook/facebook.module.js"></script>
+    <script src="facebook/facebook.controller.js"></script>
     <!-- endbuild -->
 </body>
 </html>

@@ -1,0 +1,23 @@
+<div class="row marketing">
+    <div ng-controller="pb.facebook.LoginCtrl">
+        <button type="button"
+                class="btn btn-primary btn-large"
+                ng-show="!logged"
+                ng-disabled="!facebookReady"
+                ng-click="IntentLogin()">
+                    Login with Facebook
+        </button>
+        <button type="button"
+                class="btn btn-danger btn-large"
+                ng-show="logged && !userWasAlreadyFBLogged"
+                ng-disabled="!facebookReady"
+                ng-click="logout()">
+                    Logout of Facebook
+        </button>
+
+        <br>Debug:
+        <div>
+            <debug val="user"></debug>
+        </div>
+    </div>
+</div>

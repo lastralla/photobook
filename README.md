@@ -45,12 +45,17 @@ This project uses npm and Ruby for certain dependencies. Make sure they are inst
 ## Package App
 
 **Setup Facebook app key**
-Copy and rename `keys.json.sample` to `keys.json` and add a valid Facebook api token. 
+Copy and rename `keys.json.sample` to `keys.json` and add a valid Facebook api token.
 
 **Create a dist build**
 To build:
 ```
 > grunt serve:dist
+```
+
+To test the dist build on Mac run a python server.
+```
+cd dist && python -m SimpleHTTPServer 9000
 ```
 
 ## Disclaimer

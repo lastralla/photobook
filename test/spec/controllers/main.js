@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: pb.common.MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('photobookApp'));
+  beforeEach(module('pb.common'));
 
   var MainCtrl,
-    scope;
+      scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    MainCtrl = $controller('pb.common.MainCtrl', {
       $scope: scope
     });
   }));
