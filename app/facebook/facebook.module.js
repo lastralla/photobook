@@ -14,6 +14,7 @@
 
     angular
         .module('pb.facebook')
+
             .directive('debug', function() {
                 return {
                     restrict: 'E',

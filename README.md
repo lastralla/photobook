@@ -61,8 +61,8 @@ cd dist && python -m SimpleHTTPServer 9000
 ## Disclaimer
 - It's just a demo!
 - Given more time I would have used Gulp! (But had random Grunt tasks from other projects already on hand.)
-- A proper Angular app should be structured to be more modular. See [John Papa's Angular Style Guide](https://github.com/johnpapa/angular-styleguide).
 
 
 ## TODOs
 - find a better way to insert api key even in dev mode
+- build appears to be broken!

@@ -4,11 +4,9 @@
     // originally from https://github.com/Ciul/angular-facebook
     angular
         .module('pb.facebook')
-            .controller('pb.facebook.LoginCtrl', function($rootScope, $scope, $timeout, Facebook) { /* @ngInject */
-
+            .controller('pb.facebook.LoginCtrl',
+                function($rootScope, $scope, $timeout, Facebook, FBUserService) { /* @ngInject */
                 $rootScope.user = {};
-
-                $scope.logged = false;
 
                 /**
                  * Watch for Facebook to be ready.
@@ -24,16 +22,6 @@
                         }
                     });
 
-                // get initial login status
-                Facebook.getLoginStatus(function(response) {
-                    if (response.status === 'connected') {
-                        $scope.logged = true;
-                        $scope.userWasAlreadyFBLogged = true;
-                    } else {
-                        $scope.userWasAlreadyFBLogged = false;
-                    }
-                });
-
                 $scope.IntentLogin = function() {
                     if (!$scope.logged) {
                         $scope.login();
@@ -41,32 +29,36 @@
                 };
 
                 $scope.login = function() {
-                    Facebook.login(function(response) {
-                        if (response.status === 'connected') {
-                            $scope.logged = true;
-                            $scope.me();
-                        }
+                    FBUserService.doLogin().then(function(userObj) {
+                        $scope.logged = true;
+                        $rootScope.user = userObj;
                     });
                 };
 
+                $scope.logout = function() {
+                    FBUserService.doLogout().then(function(emptyUserObj) {
+                        $scope.logged = false;
+                        $rootScope.user = emptyUserObj;
+                    });
+                    $rootScope.user = FBUserService.doLogout(); // promise
+                };
+
                 $scope.me = function() {
-                    Facebook.api('/me', function(response) {
-                        $scope.$apply(function() {
-                            $rootScope.user = response;
-                        });
+                    FBUserService.me().then(function(userObj) {
+                        $rootScope.user = userObj;
                     });
                 };
 
                 /**
-                 * Logout
+                 * get initial login status
                  */
-                $scope.logout = function() {
-                    Facebook.logout(function() {
-                        $scope.$apply(function() {
-                            $rootScope.user = {};
-                            $scope.logged = false;
-                        });
-                    });
-                };
+                FBUserService.isLogged().then(function(isLogged) {
+                    if (isLogged) {
+                        $scope.logged = true;
+                        $scope.me();
+                    } else {
+                        $scope.logged = false;
+                    }
+                });
             });
 })();
