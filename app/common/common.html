@@ -15,12 +15,10 @@
                     Logout of Facebook
         </button>
 
-        <br>Debug:
-        <div>
-            <debug val="user"></debug>
-        </div>
+        <hr>
 
         <div ng-show="logged">
+            <h3>Lookup Photo Album Id</h3>
             <button type="button"
                     class="btn btn-secondary btn-large"
                     ng-show="logged"
@@ -29,8 +27,28 @@
                         Get Photo Albums
             </button>
             <ul>
-                <li ng-repeat="album in albums">{{album.name}} ({{album.count}})</li>
+                <li ng-repeat="album in albums">Album Id: {{album.id}} - Name: {{album.name}}</li>
             </ul>
+
+            <h3>Post a Phote to an Album</h3>
+            <div>
+                <label>Album to upload to:</label>
+                <input ng-model="selectedAlbum" placeholder="photo album id">
+            </div>
+            <div>
+                <label>Description:</label>
+                <input ng-model="description" placeholder="description">
+            </div>
+            <div>
+                <pb-uploader album="selectedAlbum" desc="description"></pb-uploader>
+            </div>
+
         </div>
+
+        <!-- <br>Debug:
+        <div>
+            <debug val="user"></debug>
+        </div> -->
+
     </div>
 </div>
