@@ -19,5 +19,18 @@
         <div>
             <debug val="user"></debug>
         </div>
+
+        <div ng-show="logged">
+            <button type="button"
+                    class="btn btn-secondary btn-large"
+                    ng-show="logged"
+                    ng-disabled="!facebookReady"
+                    ng-click="getPhotoAlbums()">
+                        Get Photo Albums
+            </button>
+            <ul>
+                <li ng-repeat="album in albums">{{album.name}} ({{album.count}})</li>
+            </ul>
+        </div>
     </div>
 </div>

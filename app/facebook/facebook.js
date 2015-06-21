@@ -1,9 +1,13 @@
+/* globals FB */
 (function() {
     'use strict';
 
     angular
         .module('pb.facebook')
         .service('FBUserService', function($q, Facebook) { /* @ngInject */
+
+            var user;
+
             var FBUserService = {
                 isLogged: function() {
                     return $q(function(resolve) {
@@ -30,7 +34,8 @@
                 doLogout: function() {
                     return $q(function(resolve) {
                         Facebook.logout(function(response) {
-                            resolve({});
+                            user = {};
+                            resolve(user);
                         });
                     });
                 },
@@ -38,8 +43,25 @@
                 me: function() {
                     return $q(function(resolve) {
                         Facebook.api('/me', function(userObj) {
-                            resolve(userObj);
+                            user = userObj;
+                            resolve(user);
                         });
+                    });
+                },
+
+                getPhotoAlbums: function() {
+                    if (!user) {
+                        throw 'No user';
+                    }
+
+                    return $q(function(resolve) {
+                        Facebook.api('/' + user.id + '/albums',
+                            function(response) {
+                                if (response && !response.error) {
+                                    resolve(response.data);
+                                }
+                            }
+                        );
                     });
                 }
             };

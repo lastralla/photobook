@@ -49,6 +49,12 @@
                     });
                 };
 
+                $scope.getPhotoAlbums = function() {
+                    FBUserService.getPhotoAlbums().then(function(albums) {
+                        $scope.albums =  albums;
+                    });
+                };
+
                 /**
                  * get initial login status
                  */
