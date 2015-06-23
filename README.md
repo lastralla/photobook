@@ -65,9 +65,9 @@ cd dist && python -m SimpleHTTPServer 9000
 
 ## TODOs
 - find a better way to insert api key even in dev mode (currently need to run in dist mode or manually override it into the index file)
-- sort out authentication problem when posting an image (posting functionality works right up to token being rejected "Invalid OAuth access token")
-- improve posting of photo, should create a new album if no id provided
 - add camera capture as method of posting photo (will need polyfill for getUserMedia)
 - need to refactor the controllers to use Control As syntax (current method using scope is not recommended)
-- build appears to be broken (broken css paths)
+- grunt build:dist appears to be broken (broken css paths)
+- photo uploads but the contents is blank (debug code to that encodes/decodes ??)
+- properly clear out previous values after upload is complete
 - some code cleanup needed
