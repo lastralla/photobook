@@ -69,5 +69,5 @@ cd dist && python -m SimpleHTTPServer 9000
 - need to refactor the controllers to use Control As syntax (current method using scope is not recommended)
 - grunt build:dist appears to be broken (broken css paths)
 - photo uploads but the contents is blank (debug code to that encodes/decodes ??)
-- properly clear out previous values after upload is complete
+- properly clear file field after upload is complete
 - some code cleanup needed
